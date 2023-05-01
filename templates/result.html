@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+hsbte-result
+{% endblock %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+
+{% endblock %}
+
+{% block inner_content %}
+
+<h3 class="header-line">Result: Sem 3 2023/03: {{ data.roll_no }}</h3>
+
+
+<div class="info-container">
+	<div class="name">
+		<b>Student's name</b>: {{ data.username|capitalize }}
+	</div>
+
+	<div class="roll">
+		<b>Roll no </b>: {{ data.roll_no }}
+	</div>
+
+	<div class="father-name">
+		<b>Father's name</b>: {{ data.father_name }}
+	</div>
+</div>
+
+
+<div class="marks-container">
+<table class="table	 table-success table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Subject Name</th>
+      <th scope="col">Marks</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  	{% for marks in data.marks['marks'].keys() %}
+  				<tr>
+  					<td>{{ marks|capitalize }}</td>
+  					{% if marks == 'sessional' %}
+  						<td>{{ data.marks['marks'][marks] }}</td>
+  					{% else %}
+  						<td>{{ data.marks['marks'][marks][0][0] }} / {{ data.marks['marks'][marks][0][1] }}</td>
+  					{% endif %}
+  				</tr>
+  	{% endfor %}
+
+  </tbody>
+</table>
+</div>
+
+<div class="extra">
+	<h4>notices</h4>
+	<div class="first">
+		<p>* We are excited to announce that our website now displays the results of all students who have appeared for the exams. You can now easily access your results from anywhere, at any time. We hope that this will make it more convenient for you to keep track of your progress and plan your future academic goals.
+		</p>
+	</div>
+	<hr>
+
+	<div class="second">
+		<p>
+			<span> Privacy </span>: It is important to ensure the privacy and security of the student's results. Make sure to implement appropriate security measures to protect the student's data, such as using encryption and access controls.
+		</p>
+
+		<p>
+		<span> Accuracy </span>: It is essential to ensure that the results displayed on the website are accurate and up-to-date. Make sure to verify the results before uploading them to the website and update them promptly in case of any errors.
+		</p>	
+
+		<p>
+		<span> Availability </span>: Make sure the website is available and accessible to all students, regardless of their location or device. Ensure that the website is compatible with different web browsers and mobile devices.
+		</p>
+
+		<p>
+		<span> Timeliness </span>: Results should be uploaded to the website in a timely manner, as soon as they are available. This will help students to plan their future academic goals and take necessary actions accordingly.
+		</p>
+
+		<p>
+		<span> Support </span>: Provide a support system to students who face any difficulties accessing or understanding the results. Make sure to provide contact information for support and respond promptly to any queries or concerns.
+		</p>
+	</div>
+</div>
+
+{% endblock %}
+
