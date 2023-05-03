@@ -5,7 +5,7 @@ from model import ResultData
 
 
 @app.route('/', methods=['GET', 'POST'])
-def test():
+def index():
 	form = ResultForm()
 
 	if request.method == 'POST':
@@ -36,3 +36,9 @@ def result(roll_no):
 
 
 	return render_template('result.html', data=data)
+
+
+
+@app.get('/test')
+def testing():
+	return render_template('data.txt')
